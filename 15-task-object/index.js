@@ -17,36 +17,43 @@ const toDoList = {
     ],
 
     addTask: function (title, priority) {
-        let id = this.tasks.length + 1;
+        const idArr = this.tasks.map(task => task.id);
+        let id = idArr.at(-1) + 1;
         this.tasks.push({title, id, priority});
     },
 
-    delTask: function (id) {
-        this.tasks.map((task, index) => {
-            if (task.id === id) {
-                this.tasks.splice(index, 1)
-            }
-        })
+    deleteTaskById: function (id) {
+        this.tasks = this.tasks.filter((task) => task.id !== id);
     },
-    updateTask: function (id, newTitle, newPriority) {
+
+    updateTaskById: function (id, newTitle, newPriority) {
         this.tasks.map((task) => {
             if (task.id === id) {
-                task.title = newTitle
-                task.priority = newPriority
+                task.title = newTitle;
+                task.priority = newPriority;
             }
         })
     },
-    sortTasks: function (){
-        this.tasks.sort((a,b)=>{
-            return a.priority - b.priority
+
+    sortTasksByPriority: function () {
+        this.tasks.sort((a, b) => {
+            return a.priority - b.priority;
         })
-    }
+    },
 };
 
-toDoList.addTask('Помыть', 2)
-toDoList.addTask('Помыть1', 3)
-toDoList.addTask('Помыть2', 4)
-toDoList.delTask(2)
-toDoList.updateTask(3, '2322',2)
-toDoList.sortTasks();
+toDoList.addTask('задача 1', 2);
+toDoList.addTask('задача 2', 3);
+toDoList.addTask('задача 3', 4);
+toDoList.addTask('задача 4', 5);
+toDoList.addTask('задача 5', 1);
+
+toDoList.deleteTaskById(3);
+
+toDoList.addTask('задача 6', 6);
+toDoList.addTask('задача 7', 3);
+
+toDoList.updateTaskById(2, 'Новая задача ', 2)
+toDoList.sortTasksByPriority();
+
 console.log(toDoList.tasks);
