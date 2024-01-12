@@ -6,19 +6,19 @@
 - Отсортировать задачи по приоритету
 */
 
+
 const toDoList = {
 
     tasks: [
         {
             title: 'Помыть посуду',
             id: 1,
-            priority: 1
+            priority: 3
         },
     ],
 
     addTask: function (title, priority) {
-        const idArr = this.tasks.map(task => task.id);
-        let id = idArr.at(-1) + 1;
+        const id = this.tasks[this.tasks.length - 1].id + 1
         this.tasks.push({title, id, priority});
     },
 
@@ -36,24 +36,23 @@ const toDoList = {
     },
 
     sortTasksByPriority: function () {
+        if (this.length <= 1) return
         this.tasks.sort((a, b) => {
             return a.priority - b.priority;
         })
     },
 };
 
-toDoList.addTask('задача 1', 2);
+
 toDoList.addTask('задача 2', 3);
-toDoList.addTask('задача 3', 4);
-toDoList.addTask('задача 4', 5);
-toDoList.addTask('задача 5', 1);
+toDoList.addTask('задача 3', 3);
 
-toDoList.deleteTaskById(3);
+toDoList.deleteTaskById(2);
 
-toDoList.addTask('задача 6', 6);
-toDoList.addTask('задача 7', 3);
+toDoList.addTask('задача 4', 2);
 
-toDoList.updateTaskById(2, 'Новая задача ', 2)
+toDoList.updateTaskById(3, 'Новая задача ', 1)
+
 toDoList.sortTasksByPriority();
 
 console.log(toDoList.tasks);
