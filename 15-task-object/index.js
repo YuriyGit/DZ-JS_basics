@@ -18,7 +18,12 @@ const toDoList = {
     ],
 
     addTask: function (title, priority) {
-        const id = this.tasks[this.tasks.length - 1].id + 1
+        let id;
+        if (this.tasks.length === 0) {
+            id = 1;
+        } else {
+            id = this.tasks[this.tasks.length - 1].id + 1;
+        }
         this.tasks.push({title, id, priority});
     },
 
@@ -46,12 +51,15 @@ const toDoList = {
 
 toDoList.addTask('задача 2', 3);
 toDoList.addTask('задача 3', 3);
-
-toDoList.deleteTaskById(2);
-
 toDoList.addTask('задача 4', 2);
 
-toDoList.updateTaskById(3, 'Новая задача ', 1)
+
+toDoList.deleteTaskById(3);
+toDoList.addTask('задача 2', 3);
+
+toDoList.addTask('задача 5', 2);
+
+toDoList.updateTaskById(2, 'Новая задача ', 1)
 
 toDoList.sortTasksByPriority();
 
