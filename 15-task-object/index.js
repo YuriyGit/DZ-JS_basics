@@ -18,12 +18,7 @@ const toDoList = {
     ],
 
     addTask: function (title, priority) {
-        let id;
-        if (this.tasks.length === 0) {
-            id = 1;
-        } else {
-            id = this.tasks[this.tasks.length - 1].id + 1;
-        }
+        const id = this.tasks[this.tasks.length - 1]?.id + 1 || 1
         this.tasks.push({title, id, priority});
     },
 
